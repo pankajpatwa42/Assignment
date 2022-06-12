@@ -1,15 +1,43 @@
 package RockPaperScissors;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.Random;
 import java.util.Scanner;
 
 public class RockPaperScissorsGame {
+	
+	private static int highscore=0;
+    static File file;
+    static FileOutputStream fos=null;
+    static FileInputStream fr=null;
+
+    public static void writeData(Properties p)
+    {
+		try {
+			fos = new FileOutputStream(file,true);
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+   	 try {
+			p.store(fos ,null);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+   	 
+}
 
     public static void main(String[] args) throws IOException {
 
         System.out.println("Welcome to Rock Paper Scissors Game");
+        System.out.println("=========================");
+//    	System.out.println("Highest Score "+highscore);
+
         System.out.println("Enter your name");
         Scanner scan=new Scanner(System.in);
         String username=scan.next();
@@ -88,15 +116,38 @@ public class RockPaperScissorsGame {
             System.out.println("\nDo you want to continue? Y/N");    
   	       String c=scan.next();
  	             
-  	     if(!c.equals("n") || (c.equals("y")))
+  	     if(c.equalsIgnoreCase("n"))
          {
-            System.out.println("Invalid.........");
-            System.out.println("Please Enter Y or N...");
-            c=scan.next();
-            break;
-          }else
-        	  break;
+        	 break;
+         }
  	         
           }  
+        file = new File("C://Users//PANKAJ//eclipse-workspace//Git//config.properties");
+    	Properties p = new Properties();
+    	p.setProperty(username,String.valueOf(score));
+    	writeData(p);
+    	
+    	FileInputStream fr = new FileInputStream("C://Users//PANKAJ//eclipse-workspace//Git//config.properties");
+    	Properties pr = new Properties();
+    	pr.load(fr);
+    	
+    	String s = pr.getProperty("HighScore");
+    	fr.close();
+    	int convert_s = Integer.parseInt(s);
+    	
+    	if(highscore<score)
+    	{
+    		if(convert_s>highscore) {
+    			
+    		highscore = score;
+    		System.out.println(highscore);
+    		p.setProperty("HighScore", String.valueOf(score));
+    		p.store(fos, null);
+    		fos.close();
+    		}
+    		}
+    	highscore = Integer.parseInt(pr.getProperty("HighScore"));
+    	System.out.println(highscore);
 
+    }
 }
