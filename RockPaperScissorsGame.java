@@ -85,5 +85,18 @@ public class RockPaperScissorsGame {
 
 	            }
 	       
+            System.out.println("\nDo you want to continue? Y/N");    
+  	       String c=scan.next();
+ 	             
+  	     if(!c.equals("n") || (c.equals("y")))
+         {
+            System.out.println("Invalid.........");
+            System.out.println("Please Enter Y or N...");
+            c=scan.next();
+            break;
+          }else
+        	  break;
+ 	         
+          }  
 
 }
