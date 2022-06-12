@@ -79,6 +79,11 @@ public class RockPaperScissorsGame {
  	            score++;
  	            message = paperCustomMessage;
 	            System.out.println(winner + " won "+" "+message);
+	            }else if(userChoice.equals(computerChoice)) 
+	            {
+		            System.out.println(winner + " won "+" "+message);
+
 	            }
+	       
 
 }
