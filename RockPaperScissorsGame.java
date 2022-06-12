@@ -68,8 +68,17 @@ public class RockPaperScissorsGame {
  	            score++;
  	            message = scissorsCustomMessage;
 	            System.out.println(winner + " won "+" "+message);
+ 	        }
+            if( computerChoice.equals( "paper" ) && userChoice.equalsIgnoreCase( "rock" ) ){
+ 	            winner = "Computer";
+ 	            message = scissorsCustomMessage;
+	            System.out.println(winner + " won "+" "+message);
 
-
-	}
+ 	        }else if( userChoice.equalsIgnoreCase( "paper" ) && computerChoice.equals( "rock" ) ){
+ 	            winner = "User";
+ 	            score++;
+ 	            message = paperCustomMessage;
+	            System.out.println(winner + " won "+" "+message);
+	            }
 
 }
